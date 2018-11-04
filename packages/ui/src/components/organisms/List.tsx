@@ -6,10 +6,12 @@ import { actions } from 'src/redux/modules/list';
 import TodoRow     from '../atoms/TodoRow';
 
 interface IStateProps {
+    isGettingTodoList: boolean,
     list: Array<string|null>,
 }
 const mapStateToProps = (state: IState) => ({
-    list : state.list.list,
+    isGettingTodoList : state.list.isGettingTodoList,
+    list              : state.list.list,
 });
 
 interface IDispatchProps {
@@ -21,12 +23,21 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 const List: React.SFC<IStateProps & IDispatchProps> = props => (
     <div>
-        <button type="button" onClick={props.getList}>更新</button>
-        <ul>
-            {props.list.map((todo, i) => (
-                <TodoRow key={`${i}${todo}`}>{todo}</TodoRow>
-            ))}
-        </ul>
+        <button
+            type="button"
+            onClick={props.getList}
+            disabled={props.isGettingTodoList}
+        >更新</button>
+        {props.isGettingTodoList
+            ? <p>読み込み中</p>
+            : (
+                <ul>
+                    {props.list.map((todo, i) => (
+                        <TodoRow key={`${i}${todo}`}>{todo}</TodoRow>
+                    ))}
+                </ul>
+            )
+        }
     </div>
 );
 

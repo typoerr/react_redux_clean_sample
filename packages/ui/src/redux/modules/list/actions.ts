@@ -1,22 +1,32 @@
 import { Dispatch } from 'redux';
+import { todo }     from 'sample-core';
 
 import { IState }   from 'src/redux/modules';
 
 const prefix = '@list';
 export const types = {
-    SET_LIST : `${prefix}/SET_LIST`,
+    SET_LIST            : `${prefix}/SET_LIST`,
+    START_GET_TODO_LIST : `${prefix}/START_GET_TODO_LIST`,
 };
 
 const actions: any = {};
 
-actions.getList = () => (dispatch: Dispatch, getState: () => IState) => {
-    // TODO usecaseを叩いてlistを取ってくる
-    const userId = getState().user.id; // リクエストパラメーターのつもり
-    console.warn(`throw ${userId}`);
-    const list = ['hoge', 'fuga'];
+actions.startGettingTodoList = () => ({
+    type : types.START_GET_TODO_LIST,
+});
+
+actions.getList = () => async (dispatch: Dispatch, getState: () => IState) => {
+    dispatch(actions.startGettingTodoList());
+
+    const id  = getState().user.id;
+    const res = await todo.getList({ id });
+
+    if (!res.success) {
+        return; // システムエラー的な
+    }
 
     dispatch({
-        payload : list,
+        payload : res.result.list,
         type    : types.SET_LIST,
     });
 };

@@ -7,16 +7,23 @@ interface IAction {
 }
 
 export interface IListState {
+    isGettingTodoList: boolean,
     list: Array<string|null>,
 }
 const initialState: IListState = {
-    list : [],
+    isGettingTodoList : false,
+    list              : [],
 };
 
 const reducers = {
+    [types.START_GET_TODO_LIST]: (state: IListState) => ({
+        ...state,
+        isGettingTodoList : true,
+    }),
     [types.SET_LIST]: (state: IListState, action: IAction) => ({
         ...state,
-        list : [...action.payload],
+        isGettingTodoList : false,
+        list              : [...action.payload],
     }),
 };
 
