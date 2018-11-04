@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 
-import list, { IListState } from './list';
-import user, { IUserState } from './user';
+import listReducer, { IListState } from './list';
+import userReducer, { IUserState } from './user';
 
 export interface IState {
-    user: IUserState,
-    list: IListState,
+    listReducer: IListState,
+    userReducer: IUserState,
 }
 
 const rootReducer = combineReducers<IState>({
-    list,
-    user,
+    listReducer,
+    userReducer,
 });
 
 export default rootReducer;

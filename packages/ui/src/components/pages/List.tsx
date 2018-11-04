@@ -8,7 +8,7 @@ interface IStateProps {
     name : string,
 }
 const mapStateToProps = (state: IState) => ({
-    name : state.user.name,
+    name : state.userReducer.user.name,
 });
 
 const List: React.SFC<IStateProps> = props => (

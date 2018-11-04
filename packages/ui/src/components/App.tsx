@@ -12,7 +12,7 @@ interface IStateProps {
     isGettingUser : boolean,
 }
 const mapStateToProps = (state: IState) => ({
-    isGettingUser : state.user.isGettingUser,
+    isGettingUser : state.userReducer.isGettingUser,
 });
 
 interface IDispatchProps {

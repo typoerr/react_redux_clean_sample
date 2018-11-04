@@ -1,3 +1,5 @@
+import * as core from 'sample-core';
+
 import { types } from './actions';
 
 // TODO 適切な場所に移す
@@ -8,13 +10,11 @@ interface IAction {
 
 export interface IUserState {
     isGettingUser: boolean,
-    id: string,
-    name: string,
+    user: core.IUserEntity,
 }
 const initialState: IUserState = {
-    id            : '',
     isGettingUser : false,
-    name          : 'あなた',
+    user          : {} as core.IUserEntity,
 };
 
 const reducers = {
@@ -24,9 +24,8 @@ const reducers = {
     }),
     [types.SET_USER]: (state: IUserState, action: IAction) => ({
         ...state,
-        id            : action.payload.id,
         isGettingUser : false,
-        name          : action.payload.name,
+        user          : action.payload,
     }),
 };
 

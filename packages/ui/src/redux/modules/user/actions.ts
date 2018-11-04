@@ -23,10 +23,7 @@ actions.getUser = () => async (dispatch: Dispatch) => {
     }
 
     dispatch({
-        payload : {
-            id   : res.result.id,
-            name : res.result.name,
-        },
+        payload : res.result,
         type    : types.SET_USER,
     });
 };

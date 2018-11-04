@@ -10,8 +10,8 @@ interface IStateProps {
     list: Array<string|null>,
 }
 const mapStateToProps = (state: IState) => ({
-    isGettingTodoList : state.list.isGettingTodoList,
-    list              : state.list.list,
+    isGettingTodoList : state.listReducer.isGettingTodoList,
+    list              : state.listReducer.list,
 });
 
 interface IDispatchProps {

@@ -18,7 +18,7 @@ actions.startGettingTodoList = () => ({
 actions.getList = () => async (dispatch: Dispatch, getState: () => IState) => {
     dispatch(actions.startGettingTodoList());
 
-    const id  = getState().user.id;
+    const id  = getState().userReducer.user.id;
     const res = await todo.getList({ id });
 
     if (!res.success) {
