@@ -1,0 +1,12 @@
+'/user/get':
+    -
+        request:
+            method: 'GET'
+        options:
+            lagSec: 1.5
+        response:
+            status: 200
+            body:
+                result:
+                    userId: '1234'
+                    userName: 'でいぶ'
